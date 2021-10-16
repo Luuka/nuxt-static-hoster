@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+  apache:
+    build:
+      context: ./apache
+    volumes:
+      - ./apache/nuxtDeploy/:/usr/local/apache2/htdocs/
+    ports:
+      - 8091:80
+  webhook:
+    build:
+      context: ./webhook
+    volumes:
+      - ./apache/nuxtDeploy/:/opt/application/nuxtDeploy
+      - ./apache/nuxtSource/:/opt/application/nuxtSource
+    ports:
+      - 8090:8090
